@@ -3,9 +3,418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>web3-BBF</title>
+  <title>About - Web3-BBF</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      padding: 20px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+
+    .nav-links a.active {
+      opacity: 1;
+      border-bottom: 2px solid white;
+      padding-bottom: 4px;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      padding: 80px 0 40px;
+      color: white;
+    }
+
+    .page-header h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .page-header p {
+      font-size: 18px;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
+
+    /* Main Content */
+    .main-content {
+      background: white;
+      padding: 80px 0;
+    }
+
+    .about-section {
+      margin-bottom: 60px;
+    }
+
+    .about-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #667eea;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-avatar {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 20px;
+    }
+
+    .team-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .team-card .role {
+      color: #667eea;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .team-card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+      padding: 60px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .stat-card {
+      text-align: center;
+      color: white;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 60px 0;
+      background: #f8f9fa;
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 48px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      background: #2d3748;
+      color: white;
+      text-align: center;
+    }
+
+    .server-data {
+      margin-top: 20px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 36px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  {{ data }}
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">
+          <div class="logo-icon">🚀</div>
+          <span>Web3-BBF</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about" class="active">About</a></li>
+          <li><a href="/app">App</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>About Web3-BBF</h1>
+      <p>Building the future of decentralized applications</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="main-content">
+    <div class="container">
+      <!-- Mission Section -->
+      <div class="about-section">
+        <h2>Our Mission</h2>
+        <p>
+          Web3-BBF is a cutting-edge blockchain building framework designed to empower developers 
+          to create robust, scalable, and secure decentralized applications. We believe in making 
+          blockchain technology accessible to everyone.
+        </p>
+        <p>
+          Our framework combines the power of modern web technologies with blockchain innovation, 
+          providing developers with the tools they need to build the next generation of Web3 applications.
+        </p>
+      </div>
+
+      <!-- Story Section -->
+      <div class="about-section">
+        <h2>Our Story</h2>
+        <p>
+          Founded in 2025, Web3-BBF emerged from the need for a developer-friendly blockchain framework 
+          that doesn't compromise on performance or security. Our team of experienced developers and 
+          blockchain enthusiasts came together with a shared vision: to democratize blockchain development.
+        </p>
+        <p>
+          Today, we're proud to serve thousands of developers worldwide, helping them bring their 
+          decentralized dreams to reality.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">10K+</div>
+        <div class="stat-label">Developers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">DApps Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="container">
+      <div class="about-section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">👨‍💻</div>
+            <h3>Alex Chen</h3>
+            <div class="role">Lead Developer</div>
+            <p>Blockchain architect with 10+ years of experience in distributed systems.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">👩‍💼</div>
+            <h3>Sarah Johnson</h3>
+            <div class="role">Product Manager</div>
+            <p>Passionate about creating developer-friendly tools and experiences.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">👨‍🔬</div>
+            <h3>Michael Lee</h3>
+            <div class="role">Security Lead</div>
+            <p>Expert in cryptography and blockchain security protocols.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">👩‍🎨</div>
+            <h3>Emma Davis</h3>
+            <div class="role">UX Designer</div>
+            <p>Focused on making complex blockchain concepts simple and intuitive.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of developers building the future of Web3</p>
+        <a href="/app" class="cta-button">Launch App →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Web3-BBF. Built with NestJS & Handlebars.</p>
+      <div class="server-data">
+        <strong>Server Data:</strong> {{ data }}
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

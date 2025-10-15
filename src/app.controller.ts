@@ -19,4 +19,11 @@ export class AppController {
     const data = this.appService.getAboutData()
     return { data }
   }
+
+  @Get('app')
+  @Render('app')
+  app() {
+    const data = this.appService.getAppData()
+    return { data }
+  }
 }

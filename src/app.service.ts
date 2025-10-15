@@ -9,4 +9,8 @@ export class AppService {
   getAboutData() {
     return 'About data from server'
   }
+
+  getAppData() {
+    return 'App data from server'
+  }
 }

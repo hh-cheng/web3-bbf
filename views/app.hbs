@@ -4,15 +4,180 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App - web3-BBF</title>
-  <script type="module" src="/app.js" defer></script>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/styles/main.5f8786c1.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      padding-top: 56px;  /* Height of top nav - pushes all content down */
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 12px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+
+    .top-nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-nav-logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.3s;
+    }
+
+    .top-nav-logo:hover {
+      opacity: 0.8;
+    }
+
+    .top-nav-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .top-nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .top-nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .top-nav-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .top-nav-links a.active {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Root container - ensure SPA content doesn't overlap nav */
+    #root {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CSS variable for nav height - your SPA can use this */
+    :root {
+      --top-nav-height: 56px;
+    }
+
+    /* Force SPA's fixed header to be below the top nav */
+    #root > header[class*="fixed"],
+    #root header.fixed,
+    #root header[class*="top-0"],
+    #root > div > header[class*="fixed"] {
+      top: 56px !important;
+      margin-top: 0 !important;
+    }
+    
+    /* Override Tailwind's top-0 class specifically */
+    header.fixed.top-0 {
+      top: 56px !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .top-nav-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .top-nav-links {
+        gap: 12px;
+      }
+
+      /* Adjust for taller nav on mobile */
+      body {
+        padding-top: 80px;
+      }
+
+      :root {
+        --top-nav-height: 80px;
+      }
+
+      #root > header[class*="fixed"],
+      #root header.fixed,
+      header.fixed.top-0 {
+        top: 80px !important;
+      }
+    }
+  </style>
+  
 </head>
 <body>
+  <main class="main-content">
+<!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="top-nav-container">
+      <a href="/" class="top-nav-logo">
+        <div class="top-nav-logo-icon">🚀</div>
+        <span>Web3-BBF</span>
+      </a>
+      <ul class="top-nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/app" class="active">App</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <!-- SPA mounts here -->
-  <div id="app"></div>
+  <div id="root"></div>
+
+  </main>
   
-  <!-- Initial data from server -->
+  
+  <!-- Pass server data to your SPA -->
   <script>
     window.__INITIAL_DATA__ = {{{ data }}};
   </script>
+  
+  {{!-- Load React and ReactDOM from local vendor (node_modules) --}}
+  <script src="/vendor/react.production.min.js"></script>
+  <script src="/vendor/react-dom.production.min.js"></script>
+  
+  <script src="/scripts/main.50ea3aa8.bundle.js"></script>
 </body>
 </html>

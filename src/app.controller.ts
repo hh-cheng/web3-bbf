@@ -24,6 +24,6 @@ export class AppController {
   @Render('app')
   app() {
     const data = this.appService.getAppData()
-    return { data }
+    return { data: JSON.stringify(data) }
   }
 }
